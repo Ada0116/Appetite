@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Run : MonoBehaviour
 {
-    public float speed = 2f;       // 移动速度
-    public float jumpForce = 100f;  // 跳跃力度
+    public float speed = 2f;       
+    public float jumpForce = 10f; 
 
     public Animator animator;
 
@@ -31,18 +31,21 @@ public class Run : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) h += 1f;
         if (Input.GetKey(KeyCode.A)) h -= 1f;
 
-        // 角色在 XZ 平面移动
+        // 移动
         Vector3 move = new Vector3(h, 0, v).normalized * speed;
         _rb.velocity = new Vector3(move.x, _rb.velocity.y, move.z);
 
-        // 动画播放
+        // 动画
         animator.SetBool("Move", h != 0 || v != 0);
 
-        // AD 控制左右翻转（2D立绘左右镜像）
+        // ✅ 修正后的翻转逻辑（重点！！）
         if (h != 0)
         {
             Vector3 localScale = animator.transform.localScale;
-            localScale.x = Mathf.Sign(h) * Mathf.Abs(localScale.x); // 左右翻转
+
+            // 加了一个负号
+            localScale.x = -Mathf.Sign(h) * Mathf.Abs(localScale.x);
+
             animator.transform.localScale = localScale;
         }
 
