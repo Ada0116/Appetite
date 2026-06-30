@@ -2,19 +2,36 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("移动")]
     public float moveSpeed = 5f;
+    public bool is2DBattleMode = false;   // 勾上=战斗场景（只有左右）
+
+    [Header("跳跃")]
+    public bool canJump = false;          // 是否允许跳跃
+    public float jumpForce = 15f;        // 跳跃力度，调大可跳更高
+
     private Rigidbody rb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private bool isGrounded = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
-        // 假设角色初始朝右，美术资源默认向右
-        // 如果资源朝左，需要调整下面翻转逻辑。
+    void Update()
+    {
+        // 跳跃检测
+        if (canJump && Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (anim != null)
+                anim.SetTrigger("Jump");
+            isGrounded = false;
+        }
     }
 
     void FixedUpdate()
@@ -22,20 +39,38 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        Vector3 move = new Vector3(h, 0, v).normalized * moveSpeed;
+        Vector3 move;
+        if (is2DBattleMode)
+        {
+            // 战斗模式：只左右移动，Z轴不变，Y轴由物理控制
+            move = new Vector3(h, 0, 0).normalized * moveSpeed;
+        }
+        else
+        {
+            // 探索模式：水平→X，垂直→Z，前后左右移动
+            move = new Vector3(h, 0, v).normalized * moveSpeed;
+        }
+
+        // 应用移动（保留Y轴速度以配合跳跃）
         rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
 
-        // 更新动画参数
-        float currentSpeed = move.magnitude;
+        // 更新动画速度参数
+        float currentSpeed = new Vector2(move.x, move.z).magnitude;
         if (anim != null)
             anim.SetFloat("Speed", currentSpeed);
 
-        // 处理左右翻转
+        // 左右翻转（根据你的测试，如果还是反，改成 h < 0）
         if (h != 0 && spriteRenderer != null)
         {
-            // 向右走（h > 0）时，不翻转；向左走（h < 0）时，翻转
             spriteRenderer.flipX = (h > 0);
         }
-        // 如果角色停止，保持最后的朝向不翻转回来？通常保留最后的flipX。
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
     }
 }
