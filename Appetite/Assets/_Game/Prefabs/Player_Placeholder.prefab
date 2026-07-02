@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  is2DBattleMode: 0
+  canJump: 0
+  jumpForce: 15
 --- !u!212 &5529213691821976118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 6}
+  m_Size: {x: 2.24, y: 5.82}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
