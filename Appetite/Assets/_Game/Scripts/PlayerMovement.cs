@@ -24,13 +24,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 跳跃检测
         if (canJump && Input.GetButtonDown("Jump") && isGrounded)
         {
+            // 物理跳跃，所有跳跃共用
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            if (anim != null)
-                anim.SetTrigger("Jump");
             isGrounded = false;
+
+            if (anim != null)
+            {
+                // 判断当前是否在移动（用速度判断，不是按键）
+                float currentSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
+                if (currentSpeed > 0.1f)
+                {
+                    anim.SetTrigger("Jump");      // 行走跳跃
+                }
+                else
+                {
+                    anim.SetTrigger("JumpIdle");  // 站立跳跃
+                }
+            }
         }
     }
 

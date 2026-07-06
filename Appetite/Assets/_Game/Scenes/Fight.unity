@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1509833767852654487, guid: 01f146e51c38a4dcbabde40c7c303916, type: 3}
+      propertyPath: is2DBattleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2003807956853138266, guid: 01f146e51c38a4dcbabde40c7c303916, type: 3}
       propertyPath: m_Controller
       value: 
