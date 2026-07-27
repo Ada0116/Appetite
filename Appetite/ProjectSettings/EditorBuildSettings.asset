@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/Fight.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/_Game/Scenes/SpiritWorld.unity
+    guid: a289bbe96d874d48b3e3017d2dda81bf
   m_configObjects: {}

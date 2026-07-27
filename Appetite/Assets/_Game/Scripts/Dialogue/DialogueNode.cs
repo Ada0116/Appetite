@@ -11,6 +11,17 @@ public class DialogueNode : ScriptableObject
 
     public bool isAutoNext = true;                    // 是否点击继续到下一句
     public DialogueNode nextNode;                     // 普通下一句（无选项时）
+
+    [Header("对话结束行为")]
+    public DialogueEndAction endAction = DialogueEndAction.None;
+    public string endActionSceneName;                 // 当 endAction 为 LoadScene 时，目标场景名
+}
+
+public enum DialogueEndAction
+{
+    None,               // 不做任何事
+    LoadScene,          // 加载指定场景
+    ReturnToPrevious    // 返回上一个场景
 }
 
 [System.Serializable]

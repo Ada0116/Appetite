@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
-  m_Name: Act5
-  m_EditorClassIdentifier: 
-  text: "\u597D\uFF0C\u5B59\u4E3B\u4EFB\u521A\u67E5\u5B8C\u623F\u3002"
-  speakerName: "\u62A4\u58EB"
+  m_Name: DogWho
+  m_EditorClassIdentifier:
+  text: "我只是一只路过的狗。我感知到了你散发出的饥饿的气味。你更要照顾好自己。它把纸包放到了你的背包里。"
+  speakerName: "黑狗"
   speakerIcon: {fileID: 0}
   options: []
   isAutoNext: 1
-  nextNode: {fileID: 0}
-  endAction: 1
-  endActionSceneName: Fight
+  nextNode: {fileID: 11400000, guid: 072eb6c378ab402eb39b61fea2343069, type: 2}
+  endAction: 0
+  endActionSceneName:

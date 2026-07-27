@@ -34,9 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
             float currentSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
             if (currentSpeed > 0.1f)
-                anim.SetTrigger("PlayerJump");
+                anim.SetTrigger("Jump");
             else
-                anim.SetTrigger("PlayerJumpIdle");
+                anim.SetTrigger("JumpIdle");
         }
 
         if (!isGrounded && !hasSwitchedJumpAnim && anim != null)
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
                     else
                         targetNormTime = stateInfo.normalizedTime;
 
-                    anim.CrossFade("PlayerJump", 0.05f, 0, targetNormTime);
+                    anim.CrossFade("Jump", 0.05f, 0, targetNormTime);
                     hasSwitchedJumpAnim = true;
                 }
             }

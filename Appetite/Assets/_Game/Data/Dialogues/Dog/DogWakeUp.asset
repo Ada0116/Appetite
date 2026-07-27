@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
-  m_Name: Act5
-  m_EditorClassIdentifier: 
-  text: "\u597D\uFF0C\u5B59\u4E3B\u4EFB\u521A\u67E5\u5B8C\u623F\u3002"
-  speakerName: "\u62A4\u58EB"
+  m_Name: DogWakeUp
+  m_EditorClassIdentifier:
+  text: "一股温暖的力量将你拉回现实……你缓缓睁开了眼睛。"
+  speakerName: "旁白"
   speakerIcon: {fileID: 0}
   options: []
   isAutoNext: 1
   nextNode: {fileID: 0}
   endAction: 1
-  endActionSceneName: Fight
+  endActionSceneName: ExplorationScene

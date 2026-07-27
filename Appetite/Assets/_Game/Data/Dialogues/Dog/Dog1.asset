@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: Dog1
+  m_EditorClassIdentifier:
+  text: "你终于醒了。你看起来很饥饿。给，这是面包。"
+  speakerName: "黑狗"
+  speakerIcon: {fileID: 0}
+  options:
+  - optionText: "吃下面包"
+    nextNode: {fileID: 11400000, guid: f56818f5172f4fbdb6010f7c260a12f5, type: 2}
+    hungerChange: 10
+  - optionText: "不吃，追问它"
+    nextNode: {fileID: 11400000, guid: e14ad4e718414014951a2c117617a21a, type: 2}
+    hungerChange: 0
+  - optionText: "你是谁？"
+    nextNode: {fileID: 11400000, guid: 006a50dc4a864b1abf13cc8198fa2fe1, type: 2}
+    hungerChange: 0
+  isAutoNext: 0
+  nextNode: {fileID: 0}
+  endAction: 0
+  endActionSceneName:
