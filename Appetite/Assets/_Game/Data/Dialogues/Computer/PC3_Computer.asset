@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: PC3_Computer
+  m_EditorClassIdentifier:
+  text: "你打开电脑。屏幕发出的光在昏暗房间里显得尤为刺眼。电脑桌面很干净，几个排列得井井有条的图标。你点开和白鹅的聊天框，上一条消息停留在你晕倒之前……或许是小小鹅先前发的消息你没有回复，对方知道他会晕倒于是说了些关心的话。"
+  speakerName: "旁白"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: fcb0973a0e849798fb91af35c663aefd, type: 2}
+  endAction: 0
+  endActionSceneName: 

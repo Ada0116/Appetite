@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: DogWho5
+  m_EditorClassIdentifier:
+  text: "难道饥饿的人有特殊的气味吗？我是特殊的那一个吗？"
+  speakerName: "你"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: e4ed2b0b63e5a997267af399395412a9, type: 2}
+  endAction: 0
+  endActionSceneName: 

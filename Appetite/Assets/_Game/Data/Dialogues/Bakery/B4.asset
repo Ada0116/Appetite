@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: B4
+  m_EditorClassIdentifier: 
+  text: "\u4ECE\u6765\u6CA1\u6709\u4EBA\u548C\u6211\u4E00\u6837\u559C\u6B22\u8FD9\u6B3E\u9999\u85B0\u7684\u5473\u9053\uFF0C\u4F60\u662F\u7B2C\u4E00\u4E2A\u3002\u6211\u628A\u8FD9\u4E2A\u9762\u5305\u9999\u85B0\u9001\u7ED9\u4F60\u5427\uFF0C\u5B83\u603B\u662F\u5356\u4E0D\u51FA\u53BB\u7684\u90A3\u4E00\u6B3E\uFF0C\u96BE\u5F97\u4F60\u80FD\u559C\u6B22\u5B83\u3002"
+  speakerName: "\u5E97\u4E3B"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 1580fcf4d1ff34bdb8f7211ee6e5fbea, type: 2}
+  endAction: 0
+  endActionSceneName: 

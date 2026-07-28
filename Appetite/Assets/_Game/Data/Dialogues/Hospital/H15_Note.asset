@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: H15_Note
+  m_EditorClassIdentifier:
+  text: "你看右胳膊已经不再流血，抬手把棉花扔到垃圾桶里，然后撑着自己的上身，稍稍坐起来一点。孙主任刚刚把他的夹板放在你的床头，你扭头过去看他都写了什么。病历上的表述你都熟悉，但是末尾有一行龙飞凤舞的批注：「已产生抗药性，建议先加大用量」。"
+  speakerName: "旁白"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: dee7b244edbe601ba54492ffff53b3b1, type: 2}
+  endAction: 0
+  endActionSceneName: 

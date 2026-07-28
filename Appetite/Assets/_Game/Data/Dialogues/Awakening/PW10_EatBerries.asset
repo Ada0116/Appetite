@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: PW10_EatBerries
+  m_EditorClassIdentifier:
+  text: "你咬下浆果。整个世界失去颜色，杂草渐渐枯萎、缩小，画面变为没有边界的纯白空间，只有你孤零零地站着。远处传来孩子的笑声——「快回家啦！」「再不吃就凉啦！」笑声逐渐变得尖锐，转变为耳鸣，然后突然停止。仿佛从很远很远的地方传来一句，声音很陌生：「不要忘记饥饿。」"
+  speakerName: "旁白"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 0}
+  endAction: 1
+  endActionSceneName: MainMenu

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: H11_InjectionDetail
+  m_EditorClassIdentifier:
+  text: "她把你的右胳膊拿过去掰直，用两根沾了碘伏的棉签在你胳膊肘的内侧画圈消毒，动作很迅速。然后她拿起注射器，从小绿瓶中抽出来液体，针尖朝上，轻轻弹了弹针筒，将空气聚集到顶部，再缓缓推动活塞，直到在针尖逼出一滴药液。她的手指在你静脉的位置稍微比划了一下，然后径直把针扎了进去。你深吸了一口气，她不为所动。将液体注射进去之后，她抽出棉花，给你摁住。"
+  speakerName: "旁白"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 6268bae888237722e8bf64377051e5c1, type: 2}
+  endAction: 0
+  endActionSceneName: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: Auntie4
+  m_EditorClassIdentifier: 
+  text: "\u5C0F\u5F20\uFF0C\u4F60\u5F97\u6CE8\u610F\u8EAB\u4F53\u554A\uFF0C\u597D\u597D\u4F11\u606F\u3002\u4F60\u4EEC\u8FD9\u4EE3\u4EBA\u7684\u8EAB\u5B50\u677F\u513F\u592A\u5F31\u4E86\uFF0C\u6BD4\u4E0D\u4E0A\u4E4B\u524D\uFF0C\u53EF\u5343\u4E07\u522B\u628A\u81EA\u5DF1\u7D2F\u574F\u4E86\u3002"
+  speakerName: "\u5C45\u59D4\u4F1A\u963F\u59E8"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 098f371820da205f34b48f833f05bf42, type: 2}
+  endAction: 0
+  endActionSceneName: 

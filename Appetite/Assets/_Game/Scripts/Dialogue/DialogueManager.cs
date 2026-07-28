@@ -38,22 +38,57 @@ public class DialogueManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            Debug.Log($"[DialogueManager] Awake: 新 singleton 实例已注册。dialoguePanel={dialoguePanel != null}, optionsPanel={optionsPanel != null}, optionButtons={optionButtons != null}/{optionButtons?.Length}");
         }
         else
         {
+            Debug.LogWarning($"[DialogueManager] Awake: 已存在 singleton，销毁重复实例。当前场景: {SceneManager.GetActiveScene().name}");
             Destroy(gameObject);
             return;
         }
 
-        dialoguePanel.SetActive(false);      // 开始时不显示
+        // 确保在 Canvas 下渲染（如果 prefab 被直接放在场景中作为根对象）
+        if (GetComponentInParent<Canvas>() == null)
+        {
+            Debug.Log("[DialogueManager] 未检测到父 Canvas，自动添加 Canvas 组件以支持 UI 渲染。");
+            Canvas canvas = gameObject.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 0;
+
+            UnityEngine.UI.CanvasScaler scaler = gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();
+            scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920, 1080);
+
+            gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+        }
+
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);      // 开始时不显示
         if (optionsPanel != null)
             optionsPanel.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+        // 清理静态引用，防止指向已销毁的对象
+        if (instance == this)
+            instance = null;
+    }
+
+    void OnEnable()
+    {
+        // 如果静态引用丢失（场景重载等边界情况），重新注册
+        if (instance == null)
+            instance = this;
     }
 
     void Start()
     {
         // 记录初始场景名
         previousSceneName = SceneManager.GetActiveScene().name;
+
+        // 自动发现所有 UI 引用（prefab 修改会导致 Inspector 引用丢失）
+        AutoDiscoverAll();
 
         // 自动发现选项按钮（如果 Inspector 中未连线）
         AutoDiscoverOptions();
@@ -76,23 +111,90 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // 如果 optionButtons / optionTexts 为空，从 OptionsPanel 的子对象中自动查找
+    // 自动发现所有基本 UI 引用（dialoguePanel, speakerNameText, dialogueText, nextIndicator）
+    // 按名称从 GameObject 层级中查找，完全绕过 Inspector 序列化引用
+    void AutoDiscoverAll()
+    {
+        // 如果 dialoguePanel 为空，默认指向自己的 GameObject
+        if (dialoguePanel == null)
+        {
+            dialoguePanel = gameObject;
+            Debug.Log("[DialogueManager] AutoDiscoverAll: dialoguePanel 为空，默认指向 gameObject。");
+        }
+
+        // 按名称查找子对象
+        if (speakerNameText == null)
+        {
+            Transform t = transform.Find("SpeakerNameText");
+            if (t == null) t = FindChildRecursive(transform, "SpeakerNameText");
+            if (t != null)
+            {
+                speakerNameText = t.GetComponent<TextMeshProUGUI>();
+                Debug.Log($"[DialogueManager] AutoDiscoverAll: 找到 speakerNameText -> {t.name}");
+            }
+        }
+
+        if (dialogueText == null)
+        {
+            Transform t = transform.Find("DialogueText");
+            if (t == null) t = FindChildRecursive(transform, "DialogueText");
+            if (t != null)
+            {
+                dialogueText = t.GetComponent<TextMeshProUGUI>();
+                Debug.Log($"[DialogueManager] AutoDiscoverAll: 找到 dialogueText -> {t.name}");
+            }
+        }
+
+        if (nextIndicator == null)
+        {
+            Transform t = transform.Find("NextIndicator");
+            if (t == null) t = FindChildRecursive(transform, "NextIndicator");
+            if (t != null)
+            {
+                nextIndicator = t.gameObject;
+                Debug.Log($"[DialogueManager] AutoDiscoverAll: 找到 nextIndicator -> {t.name}");
+            }
+        }
+
+        Debug.Log($"[DialogueManager] AutoDiscoverAll 完成: panel={dialoguePanel != null}, speakerName={speakerNameText != null}, dialogue={dialogueText != null}, next={nextIndicator != null}");
+    }
+
+    // 按名称从 DialoguePanel 层级中查找所有 UI 元素
+    // 完全不依赖 Inspector 中拖入的引用（prefab 修改会导致引用丢失）
     void AutoDiscoverOptions()
     {
+        // Step 1: 确保 optionsPanel 引用有效
+        if (optionsPanel == null && dialoguePanel != null)
+        {
+            Transform optPanelTransform = dialoguePanel.transform.Find("OptionsPanel");
+            if (optPanelTransform != null)
+                optionsPanel = optPanelTransform.gameObject;
+            else
+                Debug.LogWarning("[DialogueManager] 在 DialoguePanel 下找不到 OptionsPanel，尝试递归查找...");
+        }
+
+        // 如果 optionsPanel 仍然为空，尝试从当前 GameObject 的层级中查找
         if (optionsPanel == null)
         {
-            Debug.LogWarning("[DialogueManager] optionsPanel 为空，无法自动发现按钮。");
+            Transform optPanelTransform = transform.Find("OptionsPanel");
+            if (optPanelTransform == null)
+                optPanelTransform = FindChildRecursive(transform, "OptionsPanel");
+            if (optPanelTransform != null)
+                optionsPanel = optPanelTransform.gameObject;
+        }
+
+        if (optionsPanel == null)
+        {
+            Debug.LogError("[DialogueManager] 无法找到 OptionsPanel！所有选项按钮将无法使用。");
             return;
         }
 
-        bool needButtons = (optionButtons == null || optionButtons.Length == 0 || optionButtons[0] == null);
-        bool needTexts = (optionTexts == null || optionTexts.Length == 0 || optionTexts[0] == null);
+        Debug.Log($"[DialogueManager] OptionsPanel 已定位: {optionsPanel.name}, active={optionsPanel.activeSelf}");
 
-        if (!needButtons && !needTexts) return;
-
-        // 按名称查找 OptionButton1/2/3
+        // Step 2: 按名称查找 OptionButton1/2/3
         Button[] foundButtons = new Button[3];
         TextMeshProUGUI[] foundTexts = new TextMeshProUGUI[3];
+        int foundCount = 0;
 
         for (int i = 0; i < 3; i++)
         {
@@ -105,16 +207,20 @@ public class DialogueManager : MonoBehaviour
             }
 
             foundButtons[i] = btnTransform.GetComponent<Button>();
-            // 先尝试 TMP，再尝试 Legacy Text
+            if (foundButtons[i] == null)
+            {
+                Debug.LogWarning($"[DialogueManager] {btnName} 上没有 Button 组件");
+                continue;
+            }
+
+            // 查找 TMP 文本（包括非激活的子对象）
             foundTexts[i] = btnTransform.GetComponentInChildren<TextMeshProUGUI>(true);
             if (foundTexts[i] == null)
             {
-                // 如果没有 TMP，尝试获取 Legacy Text 并动态替换
                 var legacyText = btnTransform.GetComponentInChildren<UnityEngine.UI.Text>(true);
                 if (legacyText != null)
                 {
                     Debug.Log($"[DialogueManager] {btnName} 的文字是 Legacy Text，正在替换为 TMP...");
-                    // 保留文字和颜色
                     string oldText = legacyText.text;
                     Color oldColor = legacyText.color;
                     GameObject textGo = legacyText.gameObject;
@@ -127,16 +233,41 @@ public class DialogueManager : MonoBehaviour
                 }
             }
 
-            Debug.Log($"[DialogueManager] 找到 {btnName}: Button={foundButtons[i] != null}, TMP={foundTexts[i] != null}");
+            foundCount++;
+            Debug.Log($"[DialogueManager] 自动发现 {btnName}: Button={foundButtons[i] != null}, TMP={foundTexts[i] != null}");
         }
 
-        if (needButtons) optionButtons = foundButtons;
-        if (needTexts) optionTexts = foundTexts;
+        // Step 3: 总是替换引用
+        optionButtons = foundButtons;
+        optionTexts = foundTexts;
+        Debug.Log($"[DialogueManager] 选项按钮发现完成: {foundCount}/3 个可用。");
+    }
+
+    // 递归查找子对象（按名称）
+    Transform FindChildRecursive(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name) return child;
+            Transform found = FindChildRecursive(child, name);
+            if (found != null) return found;
+        }
+        return null;
     }
 
     // 让选项按钮可读：深色背景 + 同字体
     void FixOptionButtonStyle()
     {
+        // 修复 OptionsPanel 的背景 Image：关闭 raycastTarget 防止拦截按钮点击
+        if (optionsPanel != null)
+        {
+            Image panelImg = optionsPanel.GetComponent<Image>();
+            if (panelImg != null)
+            {
+                panelImg.raycastTarget = false;
+            }
+        }
+
         if (optionButtons == null) return;
 
         // 使用对话字体（如果没有单独设置 optionFont）
@@ -168,7 +299,8 @@ public class DialogueManager : MonoBehaviour
 
         // 每次开始新对话时记录当前场景
         previousSceneName = SceneManager.GetActiveScene().name;
-        dialoguePanel.SetActive(true);
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(true);
         DisplayNode(startNode);
     }
 
@@ -193,6 +325,13 @@ public class DialogueManager : MonoBehaviour
         // 判断是否有选项
         if (node.options != null && node.options.Count > 0)
         {
+            // === 运行时紧急修复：如果引用仍然无效，重试自动发现 ===
+            if (optionButtons == null || optionButtons.Length == 0 || optionButtons[0] == null)
+            {
+                Debug.LogWarning("[DialogueManager] 显示选项时发现按钮引用无效，执行紧急修复...");
+                AutoDiscoverOptions();
+            }
+
             // === 显示选项按钮 ===
             if (optionsPanel != null)
                 optionsPanel.SetActive(true);
@@ -204,6 +343,7 @@ public class DialogueManager : MonoBehaviour
             // 配置每个按钮
             int optionCount = node.options.Count;
             int btnCount = (optionButtons != null) ? optionButtons.Length : 0;
+            int boundCount = 0;
             for (int i = 0; i < btnCount; i++)
             {
                 if (optionButtons[i] == null) continue;
@@ -219,6 +359,7 @@ public class DialogueManager : MonoBehaviour
                     optionButtons[i].onClick.RemoveAllListeners();
                     int index = i;  // 捕获当前索引
                     optionButtons[i].onClick.AddListener(() => SelectOption(index));
+                    boundCount++;
                     Debug.Log($"[DialogueManager] 选项 {i} 已绑定: \"{node.options[i].optionText}\" -> {optionButtons[i].gameObject.name} (interactable={optionButtons[i].interactable})");
                 }
                 else
@@ -227,6 +368,14 @@ public class DialogueManager : MonoBehaviour
                     optionButtons[i].gameObject.SetActive(false);
                 }
             }
+
+            if (boundCount == 0)
+            {
+                Debug.LogError($"[DialogueManager] 未能绑定任何选项按钮！optionButtons 有效条目数: {btnCount}, options.Count: {optionCount}");
+            }
+
+            // 强制刷新 Canvas，确保按钮的 raycast 数据立即可用
+            Canvas.ForceUpdateCanvases();
         }
         else
         {

@@ -11,21 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
   m_Name: Dog1
-  m_EditorClassIdentifier:
-  text: "你终于醒了。你看起来很饥饿。给，这是面包。"
-  speakerName: "黑狗"
+  m_EditorClassIdentifier: 
+  text: "\u6C6A\uFF0C\u4F60\u8FD8\u597D\u5417\uFF1F\u8FD9\u91CC\u662F\u997F\u7684\u4EBA\u6765\u7684\u5730\u65B9\u3002\u4F60\u4E00\u5B9A\u997F\u4E86\u5F88\u4E45\u5427\u6C6A\u3002"
+  speakerName: "\u9ED1\u72D7"
   speakerIcon: {fileID: 0}
-  options:
-  - optionText: "吃下面包"
-    nextNode: {fileID: 11400000, guid: f56818f5172f4fbdb6010f7c260a12f5, type: 2}
-    hungerChange: 10
-  - optionText: "不吃，追问它"
-    nextNode: {fileID: 11400000, guid: e14ad4e718414014951a2c117617a21a, type: 2}
-    hungerChange: 0
-  - optionText: "你是谁？"
-    nextNode: {fileID: 11400000, guid: 006a50dc4a864b1abf13cc8198fa2fe1, type: 2}
-    hungerChange: 0
-  isAutoNext: 0
-  nextNode: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: b2643c2a95d6b41fb8bb20b0379151d8, type: 2}
   endAction: 0
-  endActionSceneName:
+  endActionSceneName: 

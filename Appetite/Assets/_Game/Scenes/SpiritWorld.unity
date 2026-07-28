@@ -1414,7 +1414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d86a75759e6a4632a84945d8fe090f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startNode: {fileID: 11400000, guid: 28b2c21669d74cec93030cfb5975b5ee, type: 2}
+  spiritCatStartNode: {fileID: 11400000, guid: d864da1e5dc17a92a1b65bd7db0967e8, type: 2}
+  dogStartNode: {fileID: 11400000, guid: d7e71cde9d1c9e996fca1d86bddde2d3, type: 2}
   dogOffset: {x: 3, y: 0, z: 3}
   interactKey: 102
 --- !u!1 &2057155895

@@ -481,7 +481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5802977845881808889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -754,12 +754,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a649c22b7be84332b6eb7f84109ef18, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 3393224998666311574}
   speakerNameText: {fileID: 4713733932263455894}
   dialogueText: {fileID: 3593159056691286546}
-  nextIndicator: {fileID: 8643241900462969361}
+  nextIndicator: {fileID: 0}
   optionsPanel: {fileID: 2961974348033204617}
   optionButtons:
   - {fileID: 875259159211656741}

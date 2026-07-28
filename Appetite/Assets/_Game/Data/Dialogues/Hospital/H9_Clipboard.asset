@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: H9_Clipboard
+  m_EditorClassIdentifier:
+  text: "医生拿着一个夹板在上面写字，夹板的底部悬在你的眼前。枫科林蒂医院六个字环着医院的标志：一根权杖上盘着两条蛇。医生写完字之后，顺手把夹板放在你的床头柜上。护士端着托盘进来了，上面放了一只注射器和一个小绿瓶，上面写着Luminal Nutrient Solution，LNS。"
+  speakerName: "旁白"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 791b3d85b21f3a787a7c1fe315340059, type: 2}
+  endAction: 0
+  endActionSceneName: 

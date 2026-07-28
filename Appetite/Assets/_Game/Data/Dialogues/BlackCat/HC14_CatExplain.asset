@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: HC14_CatExplain
+  m_EditorClassIdentifier:
+  text: "你会懂的。这是一种古老的感觉。虽然你现在的营养水平已经回归正常了，但是你还感到饥饿。如果你一直饥饿，你将会进入另一世界。你最好赶紧找到拯救自己的方式，不然谁都帮不了你了。"
+  speakerName: "黑猫"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 38c22700c605339e0802cafc232e5978, type: 2}
+  endAction: 0
+  endActionSceneName: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: B2
+  m_EditorClassIdentifier: 
+  text: "\uFF08\u8BD5\u63A2\u6027\u5730\uFF09\u4F60\u559C\u6B22\u8FD9\u6B3E\u9999\u85B0\u7684\u5473\u9053\u5417\uFF1F"
+  speakerName: "\u5E97\u4E3B"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: 3e1e22a144215ece5640dee4a4d01f22, type: 2}
+  endAction: 0
+  endActionSceneName: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd630ef5f4b574721969adf5b45eb283, type: 3}
+  m_Name: PW4_CatBread
+  m_EditorClassIdentifier:
+  text: "是的。现在你接受了吗？面包就是面包，是可以放进嘴里咀嚼、吞咽的面包，这才是它存在的意义，而不是摆在那里，做一个散发气味的「香薰」。"
+  speakerName: "黑猫"
+  speakerIcon: {fileID: 0}
+  options: []
+  isAutoNext: 1
+  nextNode: {fileID: 11400000, guid: cd9908caf0a268030e41d5cc6611dbeb, type: 2}
+  endAction: 0
+  endActionSceneName: 
