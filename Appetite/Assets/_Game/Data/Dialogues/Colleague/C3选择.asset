@@ -17,7 +17,7 @@ MonoBehaviour:
   speakerIcon: {fileID: 0}
   options:
   - optionText: "\u521A\u521A\u51FA\u9662"
-    nextNode: {fileID: 11400000, guid: baf81c88287df15902d06cbbd12adedd, type: 2}
+    nextNode: {fileID: 11400000, guid: b7e597dcee0629d48521c8a8b3d0408c, type: 2}
     hungerChange: 0
   - optionText: "\u8001\u6BDB\u75C5\u4E86"
     nextNode: {fileID: 11400000, guid: ebc211e7b22b812dfee553b5e7b723de, type: 2}

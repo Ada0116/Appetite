@@ -33,6 +33,12 @@ public class DialogueManager : MonoBehaviour
 
     public bool IsDialogueActive => currentNode != null;
 
+    /// <summary>
+    /// 自动推进前的钩子。返回 false 则中断自动串联，改为结束对话。
+    /// 用于在 NPC 对话之间需要玩家走到下一个 NPC 的场景。
+    /// </summary>
+    public static System.Func<DialogueNode, bool> OnBeforeAutoAdvance;
+
     void Awake()
     {
         if (instance == null)
@@ -420,6 +426,11 @@ public class DialogueManager : MonoBehaviour
 
         if (chosen.nextNode != null)
         {
+            if (OnBeforeAutoAdvance != null && !OnBeforeAutoAdvance(chosen.nextNode))
+            {
+                EndDialogue();
+                return;
+            }
             DisplayNode(chosen.nextNode);
         }
         else
@@ -435,6 +446,12 @@ public class DialogueManager : MonoBehaviour
 
         if (currentNode.nextNode != null)
         {
+            // 检查是否有外部钩子需要中断自动串联
+            if (OnBeforeAutoAdvance != null && !OnBeforeAutoAdvance(currentNode.nextNode))
+            {
+                EndDialogue();
+                return;
+            }
             DisplayNode(currentNode.nextNode);
         }
         else
